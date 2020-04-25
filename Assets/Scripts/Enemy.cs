@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Enemy : MonoBehaviour
 {
@@ -38,17 +40,25 @@ public class Enemy : MonoBehaviour
         {
             GoToTop();
         }
+    
         
     }
 
     void GoToTop()
     {
-        transform.position = new Vector3(Random.Range(-9.7f, 9.7f), 9, 0);
+        transform.position = new Vector3(UnityEngine.Random.Range(-9.7f, 9.7f), 9, 0);
     }
 
     void Movement()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        /*int score = _player.GetScore();
+        int scoreMultiplyer = (score / 100);
+        transform.Translate(Vector3.down * (_speed + scoreMultiplyer)  * Time.deltaTime);*/
+        
+        // ^ Logic to speed enemies up every 100 points. ^ //
+
+        transform.Translate(Vector3.down * (_speed)  * Time.deltaTime);
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -73,10 +83,14 @@ public class Enemy : MonoBehaviour
     private void DeathSequence()
     {
         _animator.SetTrigger("OnEnemyDeath");
-
+        gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         _speed = 1.5f;
 
         Destroy(gameObject, 2.4f);
+    }
+    public void SpeedUp()
+    {
+        _speed++;
     }
 }

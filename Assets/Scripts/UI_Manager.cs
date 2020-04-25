@@ -43,12 +43,9 @@ public class UI_Manager : MonoBehaviour
     public void UpdateLives(int currentLives)
     {
         _livesImg.sprite = _lifesprites[currentLives];
-        if (currentLives == 0)
-        {
-            GameOverSequence();
-        }
+    
     }
-    void GameOverSequence()
+    public void GameOverSequence()
     {
         _gameManager.GameOver();
         _restartText.gameObject.SetActive(true);

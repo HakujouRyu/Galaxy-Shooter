@@ -24,15 +24,11 @@ public class SpawnManager : MonoBehaviour
 
     private bool _stopSpawn = false;
 
-    void Awake()
+
+    public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
-    }
-
-    void Update()
-    {
-        
     }
     IEnumerator SpawnEnemyRoutine()
     {
