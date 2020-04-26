@@ -6,7 +6,8 @@
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
-#/[Bb]uilds/
+/Builds/Windows
+
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
